@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>onclick event</title>
+    <script>
+        // 1 - definiamo funztoin handleClick
+        //quando scrivo qualcosa all'interno di Nome sulla pagina, alert riporta output di cio che scrivo
+        function handleClick(ele) {
+         //  alert(ele.value);
+           ele.value = ele.value.toUpperCase();
+           ele.value = ele.value.toUpperCase();
+        }
+
+        // 2 - con questa funzione gestisco gli elementi del form (f)
+          //ricarica i dati immessi via URL dal form nome=input cogNome=input
+        function handleForm(f) {
+            alert(f.name.value);
+            //se non vogliamo che i dati vengano inviati ritorniamo false
+            return false;
+        }
+
+    </script>
+    <link rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <!-- 2 - aggiungo evento inline onsubmit , mettimao la funzione che gestisce il form
+aggiungiamo il return per non fare inviare il form dalla funzione (return false) -->
+ <form class="col-md-6 push-md-3" onsubmit="return (handleForm(this));">
+     <h2>Registration form</h2>
+     <div class="form-group">
+         <label class="col-form-label" for="name">Nome</label>
+         <!-- per aggiungere evento, metto nome evento es.onclick seguito da funzione
+          che gestisca questo evento  -->
+            <!-- onclick="alert(this.value) darebbe in output quello che scriviamo all'interno del nome
+          <input class="form-control" onclick="alert(this.value)" id="name" name="name" onclick="handleClick(event)"> -->
+
+               <!-- 1 - a onclick gli passiamo la funzione handleClick -->
+               <!-- 2 aggiungiamo anche evento che si suava inline onkeyup (ogni volta che scrivo fai qualcvosa) -->
+         <input class="form-control"  onkeyup="handleClick(this)" id="name" name="name" onclick="handleClick(event)">
+     </div>
+     <div  class="form-group">
+         <label  class="col-form-label"  for="lastname">CogNome</label>
+         <input  class="form-control" id="lastname" name="lastname">
+     </div>
+     <div  class="form-group">
+         <button class="btn btn-success btn-outline-success">Submit</button>
+     </div>
+
+ </form>
+</div>
+<script>
+    /*
+    document.querySelector('button').onclick = function (ev) {
+    
+        console.dir(ev);
+        
+    }
+    document.querySelector('form').addEventListener('submit',function (ev) {
+        ev.preventDefault();
+        ev.target.style.border='2px solid red'
+        console.dir(ev);
+        return false;
+    });*/
+</script>
+</body>
+</html>
+
+
+
+<!-- Per riassumere:
+
+inline direttamente nell'eleemento mettiamo un evenrto -->

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events: Prevent Default - Javascript</title>
+</head>
+<body>
+    <h2>Events: Prevent Default - Javascript</h2>
+    <a href="https://www.youtube.com/watch?v=3SNyh57XSIA&ab_channel=dcode" id="ytLink">Youtube</a>
+    <p>
+        Enable Link: <input type="checkbox" id="checkBoxz">
+    </p>
+
+    <script type="text/javascript">
+        const ytLink = document.getElementById('ytLink');
+        const checkBoxz = document.getElementById('checkBoxz');
+
+        ytLink.addEventListener('click', function(e) {
+            //se checkbox NON viene spuntata
+            if(!checkBoxz.checked){
+                //preventDefault non mi apre link
+                e.preventDefault();
+            }
+        })
+
+    </script>
+
+
+
+</body>
+</html>
+
+<!-- Una volta che spunta è selezionata il link si aprira quando schiacciato, viceversa no -->

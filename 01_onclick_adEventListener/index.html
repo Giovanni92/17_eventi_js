@@ -1,0 +1,112 @@
+
+<!-- Vediamo come aggiungere eventi a dfegli elementi del documento senza farlo inline -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>onclick event</title>
+    <script>
+
+        //mi accerto che la struttura del DOM sia pronta
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var doc = document;
+            //Qui aggiungeremo gli stessi elementi che abbiamo aggiunto nella lez precedente ma non inline
+
+            //selezioniamo un elemento 
+            var f = doc.querySelector('#form');  //querySel seleziona il primo elemento di questo tipo, in questo caso per id
+            // alert(f);   //ci accertiamo che abbiamo aggiunto il form (ci da in output alert con [object HTMLFormElement] )
+
+
+            /*
+
+            //un vecchio modo per aggiunger eil form:
+            //html element.nome evento = funzione anonima
+            f.onsubmit = function(e) {
+                // //la variabile che viene messa dentro ala funzione anonima di tipo event
+                // //ci da accesso a tutto l'evento che ha scatenato l'invio del form
+                // console.log(e);
+                // return false;
+
+                //se noi volessimo accedere al form:
+                e.preventDefault();
+
+                //posso accedere alle prop CSS dell'elemento:
+                var trgt = e.target;
+                trgt.style.border = '1px solid red';    //invio form, ce alert e accedo alle prop del form cambiando lo stile del contenuto
+
+                //accediamo ai valori del campo del form
+                alert(e.target.name.value); //da in output cn alert valore name
+                //posso validare questi dati, es.camppo vuoto devi compilare campo e non invio il form
+                 //una volta validati tutti i dati ritorno true o false se compilati correttamente
+            };
+
+
+            */
+
+            function handleForm(evnt) {
+                //cosi non si ricarica pagina e posso analizzare elementi su chrome con ispeziona
+                evnt.preventDefault();
+                // alert('test');
+                console.dir(evnt);  //vedo strutture oggetto
+                //anche in questo modo accedo al form, modificandone lo stile 
+                evnt.target.style.border = '2px solid green';
+            }
+
+            //quale listener vuoi ascoltare?    solo nome evento senza on
+            f.addEventListener('submit', handleForm);
+
+            //se volessi togliere questo evento:
+            f.removeEventListener('submit', handleForm);
+
+
+
+        });
+
+
+    </script>
+    <link rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <!-- 2 - aggiungo evento inline onsubmit , mettimao la funzione che gestisce il form
+aggiungiamo il return per non fare inviare il form dalla funzione (return false) -->
+ <form class="col-md-6 push-md-3" id="form">
+     <h2>Registration form</h2>
+     <div class="form-group">
+         <label class="col-form-label" for="name">Nome</label>
+         <input class="form-control"  id="name" name="name">
+     </div>
+     <div  class="form-group">
+         <label  class="col-form-label"  for="lastname">CogNome</label>
+         <input  class="form-control" id="lastname" name="lastname">
+     </div>
+     <div  class="form-group">
+         <button class="btn btn-success btn-outline-success">Submit</button>
+     </div>
+
+ </form>
+</div>
+<script>
+    /*
+    document.querySelector('button').onclick = function (ev) {
+    
+        console.dir(ev);
+        
+    }
+    document.querySelector('form').addEventListener('submit',function (ev) {
+        ev.preventDefault();
+        ev.target.style.border='2px solid red'
+        console.dir(ev);
+        return false;
+    });*/
+</script>
+</body>
+</html>
+
+
+
+<!-- Per riassumere:
+
+inline direttamente nell'eleemento mettiamo un evenrto -->
